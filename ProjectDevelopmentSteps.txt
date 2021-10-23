@@ -1,0 +1,36 @@
+Section 1
+
+1. Her servisi daha kolay anlaþýlabilir olmasý adýna klasörlere bölüyoruz.
+1.1 Oluþturduðumuz servis klasörünün içerisine yeni bir ASP.NET Core Web API projesi oluþturuyoruz. Cross platform olarak seçmeyi unutma!
+1.2 Oluþturduðumuz projenin içindeki Properties klasörünün içinde launchSettings.json dokumanýnda port deðiþikliðini yapýyor ve açýlýþ þeklini deðiþtiriyoruz.
+1.3 Oluþturduðumuz projede Dependencies kýsmýna sað týklayarak NuGet ile MongoDB.Driver yükleme iþlemini yapýyoruz.
+1.4 Oluþturduðumuz projede Model isminde bir klasör yaratýyoruz. Bu dosyanýn içerisine Collection`larýmýza/Table denk gelecek olan modelleri oluþturuyoruz.
+2. Solution içerisine yeni bir Shared isminde klasör oluþturulur.
+2.1 Ýçerisinde Class Library oluþturulur. Oluþturma esnasýnda framework olarak Identity server 3.1 olacaðýndan dolayý þimdilik bu þekilde seçiyoruz. Ýleride NuGet paketi ile 5.0 a geçmekte mümkün.
+2.2 Oluþturduðumuz Class Library içerisine Response.cs isminde bir response verileri içerecek sýnýf oluþturulur.
+2.3 Oluþturduðumuz Class Library içerisine null response dönebilmek için NoContent.cs isminde bir sýnýf oluþturulur.
+3. Catalog projemizde Dtos adýnda bir klasör oluþturuyoruz.
+3.1 Her bir modelimiz için bir DTO sýnýfý oluþturmakla beraber CU(Create/Update) iþlemleri için de DTO sýnýflarý oluþturuyoruz.
+4. Bu aþamaya geldiðimizde servisimize bir AutoMapper ekliyor olacaðýz. NuGet manager ile ASP.NET Core AutoMapper`ý projemize Dependencies kýsmýndan dahil etmemiz gerekmektedir.
+4.1 Yükleme iþleminin ardýndan projemizin Startup.cs dosyasýnda ayarlarýný yapmayý unutmamalýyýz.
+4.2 Projemizin içerisinde Mapping isminde bir klasör oluþturuyarak içerisinde GeneralMapping.cs isminde bir sýnýf oluþturuyoruz.
+5. Veritabaný ayarlarýný ve genel proje ayarlarýný içerisinde barýndýrabileceðimiz appsetting.json dosyasýný ele alabiriz. Örn. Collection/Table isimleri, baðlantý adresi, DB ismi vs.
+5.1 Belirteceðim bu ayarlarý bir class üzerinden okuyabilmek için ilk oluþturduðumuz proje içerisinde Settings adýnda bir klasör oluþturuyoruz.
+5.2 Okuyacaðýmýz ayarlarý bir interface ile soyutlayýp daha sonra bu soyutlamayý kullanacaðýmýz sýnýflarýmýzý projemize dahil ediyoruz (IDatabaseSettings ve DatabaseSettings).
+6. Servis methodlarýmýzý oluþturmak için projenin altýnda Services isminde bir klasör oluþturuyoruz.
+6.1 Her bir modelimize ait servis sýnýflarýný Services altýnda oluþturuyoruz ve bir Interface`ten implement edilmelerini saðlýyoruz.
+6.2 Constructor metodunda veritabaný baðlantýsý iþlemleri ve collection/table belirteçlerini ekliyoruz.
+6.3 Shared altýnda Response.cs sýnýfýný kullanabilmek için projeye dahil etmemiz gerekiyor.
+6.4 Oluþturma iþlemleri bittiðinde Startup.cs dosyasýnda yeni bir scope tanýmý yapýyoruz. Örn. services.AddScoped<ICategoryService, CategoryService>();
+7. Servislerimizi oluþturduktan sonra sýra endpointlerimizi belirleyeceðimiz kýsýma geldi.
+7.1 Projemizde Controller isminde bir klasör oluþturuyoruz.
+7.2 Controller klasörüne sað týklayarak Add > Controlller seçeneðini seçiyoruz.
+7.3 Karþýmýza çýkan pencereden sol tarafta API seçili olduðuna ve bir empty controller eklediðimizden emin oluyoruz.
+7.4 Bu aþamada ayrý bir parantez açacaðýz. Genel bir response sýnýfý oluþturarak kontrol mekanizmasý eforunu azaltýyor olacaðýz.
+7.4.1 Daha önceden oluþturduðumuz Shared klasöründe ControllerBases isimli bir klasör oluþturuyoruz.
+7.4.2 Oluþturudðumuz bu klasörün içerisine CustomControllerBase.cs isminde bir sýnýf oluþturuyoruz.
+7.4.3 Oluþturduðumuz sýnýf ControllerBase`ten türemeli fakat bu noktada projemize referans olarak eklememiz gereken bir taným gerekmektedir.
+7.4.4 Bu tanýmý yapabilmek için Shared altýnda oluþturduðumuz projeye sað týklayarak Edit Project File seçeneðini týklýyoruz. Ardýndan ilgili içerikte iþaretlenmiþ kod bloðunu ekliyoruz.
+7.5 Oluþturduðumuz controller sýnýfýnda ilgili endpointlerin geliþtirmelerini yapýyoruz.
+
+Section 2

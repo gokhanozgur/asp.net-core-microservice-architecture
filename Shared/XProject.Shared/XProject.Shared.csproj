@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <!-- Begin add Microsoft.AspNetCore.Mvc; referance here (ProjectDevelopmentStep.txt step 7.4.4). -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+  </ItemGroup>
+  <!-- End add Microsoft.AspNetCore.Mvc; referance here. -->
+</Project>
