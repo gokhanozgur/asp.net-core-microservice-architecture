@@ -71,3 +71,4 @@ Section 3 Identity Server Kurulum
 9.8 Oluþturduðumuz izinlerin Aud belirteci ile atanmasý saðlanýr.
 9.9 Ýzinlerini belirlemiþ olduðumuz API`lere istek yapabilecek client bilgisini tanýmlýyoruz. GrantType bilgisinin GrantTypes.ClientCredentials olmasý gerekmektedir.
 9.10 Belirlediðimiz bu izin bilgilerini, client tanýmlarýný Startup.cs içerisinde memory`de saklamak üzere tanýmlýyoruz.
+9.10.1 https://localhost:5001/connect/token endpoint`imize body içerisinde client_id:WebMvcClient client_secret:secret grant_type:client_credentials parametreleri ile istek yapýyoruz.
