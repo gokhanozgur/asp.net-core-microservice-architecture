@@ -39,7 +39,7 @@ namespace XProject.Services.Catalog.Controllers
         }
 
         // api/courses/getallbyuserid/1
-        [Route("/api/{controller}/GetAllByUserId/{userId}")]
+        [Route("/api/[controller]/GetAllByUserId/{userId}")]
         [HttpGet]
         public async Task<IActionResult> GetAllByUserId(string userId)
         {

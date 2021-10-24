@@ -36,6 +36,7 @@ namespace XProject.Services.Catalog.Services
         public async Task<Response<CategoryDto>> CreateAsync(CategoryCreateDto categoryCreateDto)
         {
             var newCategory = _mapper.Map<Category>(categoryCreateDto);
+            await _categoryCollection.InsertOneAsync(newCategory);
             return Response<CategoryDto>.Success(_mapper.Map<CategoryDto>(newCategory), (int)HttpStatusCode.Created); // or (int)HttpStatusCode.OK
         }
 
