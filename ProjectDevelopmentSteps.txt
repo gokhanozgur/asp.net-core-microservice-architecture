@@ -33,7 +33,27 @@ Section 1
 7.4.4 Bu tanýmý yapabilmek için Shared altýnda oluþturduðumuz projeye sað týklayarak Edit Project File seçeneðini týklýyoruz. Ardýndan ilgili içerikte iþaretlenmiþ kod bloðunu ekliyoruz.
 7.5 Oluþturduðumuz controller sýnýfýnda ilgili endpointlerin geliþtirmelerini yapýyoruz.
 
-Section 2
+Section 2 Docker ve Container`lar
+
 1. Docker kurulumu yapýlýr.
 2. Portainer docker ile ayaða kaldýrýlýr.
 3. Portainer ile App Templates kýsmýndan MongoDB container`ý ayaða kaldýrýlýr.
+
+Section 3 Identity Server Kurulum
+
+1. https://github.com/IdentityServer/IdentityServer4.Templates adresine eriþilir.
+2. dotnet new -i identityserver4.templates komutu power shell`de çalýþtýrýlýr.
+3. Solution dosyamýza locate olarak içerisinde IdentityServer isminde bir klasör oluþturuyoruz.
+3.1 Locate olduðumuz dosyada dotnet new is4aspid --name XProject.IdentityServer komutu power shell`de çalýþtýrýlýr.
+3.2 IDE`mizde ana solution altýnda IdentityServer klasörü oluþturulur ve sað týklayarak var olan bir projeyi ekle seçeneðinden kurulumunu yaptýðýmýz IdentityServer projesi seçilir.
+4. Portainer`a baðlanarak SQL Server (Linux) container`ýný kuruyoruz.
+4.1 SQL server image bulamýyor ve kuramýyorsa manuel olarak bir image edinip bunu Docker`da run ediyoruz.
+5. Projemize dahil ettiðimiz IdentityServer projesinde Data altýnda bulunan Migrations klasörünü siliyoruz.
+6. appsettings.json dosyasýnda veritabaný baðlantý bilgilerimizi tanýmlýyoruz.
+7. Startup.cs içerisinde DbContext bilgileri bölümünde default olarak Sqlite tanýmý bulunmaktadýr. SqlServer için deðiþiklik yapmamýz gerekmektedir.
+7.1 IdentityServer projemizin dependency kýsmýnda NuGet ile Microsoft.EntityFrameworkCore.SqlServer paketini indiriyoruz (IdentityServer projesi 3.1.5 versiyonunda olduðundan bizde yüklerken bunu seçmeliyiz).
+8. Migration iþlemimiz için Program.cs dosyasýna gidiyoruz ve default seed ile ilgili kýsýmlarý comment out yapýyoruz. Ardýndan veritabanýmýz yok ise oluþturmasý için kodlarýmýzý yazýyoruz.
+8.1 Eðer kullanýcýmýzýn IdentityServer sutunlarý haricinde kendimize ait sutunlarý da saklamak istiyorsak Models altýnda bulunan ApplicationUser.cs dosyasýnda property olarak tanýmlamamýz mümkündür.
+8.2 Kodumuzu yazdýktan sonra üst kýsýmdan projemizi IdentityServer çalýþtýracak þekilde ayarlýyoruz, Package Manager Console`da ayný þekilde ayarlýyoruz. Eðer console kýsmý görünmüyorsa Tools > Nuget Package Manger > Nuget Package Manger Console týklayarak görünmesini saðlýyoruz.
+8.3 Package Manager Console kýsmýnda add-migration initial komutunu çalýþtýrýyoruz.
+8.4 update-database komutunu çalýþtýrýyoruz. Projeyi çalýþtýrdýðýmýzda kullanýcýmýzý otomatik oluþturuyor olacak.
