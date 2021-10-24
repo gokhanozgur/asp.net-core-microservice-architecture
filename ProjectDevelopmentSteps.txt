@@ -34,3 +34,6 @@ Section 1
 7.5 Oluþturduðumuz controller sýnýfýnda ilgili endpointlerin geliþtirmelerini yapýyoruz.
 
 Section 2
+1. Docker kurulumu yapýlýr.
+2. Portainer docker ile ayaða kaldýrýlýr.
+3. Portainer ile App Templates kýsmýndan MongoDB container`ý ayaða kaldýrýlýr.
