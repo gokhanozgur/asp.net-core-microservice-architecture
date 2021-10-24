@@ -1,3 +1,5 @@
+Proje içerisinde bazý adýmlarý arayabilirsiniz. Örn. (ProjectDevelopment.txt step 9.10).
+
 Section 1
 
 1. Her servisi daha kolay anlaþýlabilir olmasý adýna klasörlere bölüyoruz.
@@ -57,3 +59,15 @@ Section 3 Identity Server Kurulum
 8.2 Kodumuzu yazdýktan sonra üst kýsýmdan projemizi IdentityServer çalýþtýracak þekilde ayarlýyoruz, Package Manager Console`da ayný þekilde ayarlýyoruz. Eðer console kýsmý görünmüyorsa Tools > Nuget Package Manger > Nuget Package Manger Console týklayarak görünmesini saðlýyoruz.
 8.3 Package Manager Console kýsmýnda add-migration initial komutunu çalýþtýrýyoruz.
 8.4 update-database komutunu çalýþtýrýyoruz. Projeyi çalýþtýrdýðýmýzda kullanýcýmýzý otomatik oluþturuyor olacak.
+8.5 Identity server endpointlerini inceleyebilmek için https://identityserver4.readthedocs.io/en/latest/endpoints/discovery.html adresinde istek atabilir veya kendi url`imiz üzerinden görebiliriz.
+9. IdentityServer projemizde Dtos adýnda bir klasör oluþturuyoruz.
+9.1 Dtos içerisinde SignUpDto.cs adýnda bir sýnýf oluþturuyoruz ve kayýt iþleminde tutmak istediðimiz property`leri belirliyoruz.
+9.2 IdentityServer projemizde Controller adýnda bir klasör oluþturuyoruz.
+9.3 Oluþturduðumuz controller içierisine UserController.cs adýnda bir controller oluþturuyoruz.
+9.4 Entpoint`lere istek atýldýktan sonra cevaplarý belli bir standartta dönmemiz için daha önceden hazýrlamýþ olduðumuz Response.cs sýnýfýný kullanacaðýz.
+9.5 Bu sýnýf diðer projemizin Shared klasöründe olduðundan dolayý IdentityServer Dependencies kýsmýna sað týklayarak Add Project Reference bölümünden projemize dahil ediyoruz.
+9.6 Endpoint`lerimize istek yapýlýrken hangisinin user token ile hangisinin public tokenlar ile iþlem yapabildiðini ayýrt etmek için IdentityServer içerisinde Config.cs sýnýfýnda tanýmlar yapmamýz gerekiyor.
+9.7 Kullanýcý bilgisi içermeyen fakat client id bilgisinin bulunduðu scope(kýsým) tanýmlanýr. Endpoint`te özel read, write, delete, full iþlem gibi izinler tanýmlanabilir.
+9.8 Oluþturduðumuz izinlerin Aud belirteci ile atanmasý saðlanýr.
+9.9 Ýzinlerini belirlemiþ olduðumuz API`lere istek yapabilecek client bilgisini tanýmlýyoruz. GrantType bilgisinin GrantTypes.ClientCredentials olmasý gerekmektedir.
+9.10 Belirlediðimiz bu izin bilgilerini, client tanýmlarýný Startup.cs içerisinde memory`de saklamak üzere tanýmlýyoruz.
