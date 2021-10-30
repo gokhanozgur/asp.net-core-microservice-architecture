@@ -28,6 +28,10 @@ namespace XProject.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Add for local athorization process (You can check ProjectDevelopmentStep.txt step 9.11).
+            services.AddLocalApiAuthentication();
+
             services.AddControllersWithViews();
 
             // We change from Sqlite to SqlServer (You can check ProjectDevelopmentStep.txt step 7).
@@ -82,6 +86,7 @@ namespace XProject.IdentityServer
 
             app.UseRouting();
             app.UseIdentityServer();
+            app.UseAuthentication(); // This line for local endpoint security (You can check ProjectDevelopmentStep.txt 9.11.1).
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

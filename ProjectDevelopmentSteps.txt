@@ -72,3 +72,8 @@ Section 3 Identity Server Kurulum
 9.9 Ýzinlerini belirlemiþ olduðumuz API`lere istek yapabilecek client bilgisini tanýmlýyoruz. GrantType bilgisinin GrantTypes.ClientCredentials olmasý gerekmektedir.
 9.10 Belirlediðimiz bu izin bilgilerini, client tanýmlarýný Startup.cs içerisinde memory`de saklamak üzere tanýmlýyoruz.
 9.10.1 https://localhost:5001/connect/token endpoint`imize body içerisinde client_id:WebMvcClient client_secret:secret grant_type:client_credentials parametreleri ile istek yapýyoruz.
+9.11 Startup.cs sýnýfýmýzda local bazýnda deðerlendirdiðimiz endpointlerimiz için tanýmýmýzý ekliyoruz.
+9.11.1 Startup.cs sýnýfýmýzda authentication uygulanacaðý bilgisini tanýmlýyoruz.
+9.11.2 Client token bekleyeceðimiz endpoint`imiz için koruma etiketi tanýmlýyoruz.
+9.11.3 Controller içierisinde bulunan methodlarýmýza ulaþýmý ayarlamak için attribute tanýmýmýzý yapýyoruz.
+9.12 SignUp endpointini test etmek için postmanden https://localhost:5001/api/user/signup adresini giriyoruz ve token alma adresimizden bir token ediniyoruz. Daha sonra edindiðimiz bu token`i Authorization kýsmýnda Type OAuth 2.0 seçerek tokenizimizi ilgili alana yazýyoruz ve istek atýyoruz.

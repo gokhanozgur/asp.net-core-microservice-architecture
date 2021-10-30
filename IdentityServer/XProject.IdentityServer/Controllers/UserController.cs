@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,10 +10,12 @@ using System.Threading.Tasks;
 using XProject.IdentityServer.Dtos;
 using XProject.IdentityServer.Models;
 using XProject.Shared.Dtos;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace XProject.IdentityServer.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(LocalApi.PolicyName)] // This line for local endpoint security (You can check ProjectDevelopmentStep.txt 9.11.2).
+    [Route("api/[controller]/[action]")] // Action attribute added for controller method based routing (You can check ProjectDevelopmentStep.txt 9.11.3).
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -37,7 +40,7 @@ namespace XProject.IdentityServer.Controllers
 
             if (!result.Succeeded)
             {
-                return BadRequest(Response<Shared.Dtos.NoContent>.Fail(result.Errors.Select(x => x.Description).ToList(), (int)HttpStatusCode.BadRequest));
+                return BadRequest(Response<NoContent>.Fail(result.Errors.Select(x => x.Description).ToList(), (int)HttpStatusCode.BadRequest));
             }
 
             return NoContent();
