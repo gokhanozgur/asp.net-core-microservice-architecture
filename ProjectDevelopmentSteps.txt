@@ -97,4 +97,5 @@ Section 3 Identity Server Kurulum
 16. Sýradaki aþamamýz IdentityResource bilgisini hangi veriler ile dolduracaðýmýz bulunmaktadýr. Bu iþlemi IdentityServer projemizin Config.cs sýnýfýnda gerçekleþtireceðiz.
 16.1 IdentityResources scope`unda token içerisinde göstereceðimiz bilgileri tanýmlýyororuz. OpenId bilgisi mutlaka tanýmlý olmalýdýr.
 16.2 Ardýndan token ile iþleme devam edebilecek bir client tanýmlamasý yapýyoruz. Bu client içerisinde hangi bilgileri ileteceðimizi, access token geçerlilik süresini, refresh token geçerlilik süresini ve refresh token bilgisinin kaç kez kullanýlabileceðini tanýmlýyoruz.
-
+17. Kullanýcý bilgilerini doðrulamýþ bir kullanýcý için detay bilgilerini alabileceðimiz methodu tanýmlacaðýz.
+17.1 IdentityServer projemizde daha önceden tanýmladýðýmýz UserController sýnýfýnda Claim bilgilerinden kullanýcýnýn kendisine ulaþabildiðimiz geliþtirmeyi yapýyoruz.

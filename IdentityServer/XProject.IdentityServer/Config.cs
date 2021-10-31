@@ -71,7 +71,8 @@ namespace XProject.IdentityServer
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess, // This line for refresh token.
-                        "roles"
+                        "roles",
+                        IdentityServerConstants.LocalApi.ScopeName
                     },
                     AccessTokenLifetime = 1*60*60, // Default 1 hour.
                     RefreshTokenExpiration = TokenExpiration.Absolute,
