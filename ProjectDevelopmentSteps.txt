@@ -87,12 +87,12 @@ Section 3 Identity Server Kurulum
 12. Oluþturduðumuz her iki projenin ayný anda çalýþabilmesi için Solution üzerinde sað týklayarak Set Startup Project seçeneðini seçiyoruz.
 12. Karþýmýza gelen ekranda Multiple startup project seçeneðinden ilgili projeleri Start olarak seçiyoruz.
 13. Projemize ekleyeceðimiz tüm endpoint`ler için her sýnýfa Authorize annotation eklemek yerine Startup.cs içerisinde tanýmlýyoruz.
-14. User token based yani grand type validation için akýþta devam eden adýmlar uygulanýr.
+14. User token based yani grant type validation için akýþta devam eden adýmlar uygulanýr.
 14.1 Validasyon iþlemi için IdentityServer projemizin içerisinde Server adýnda bir klasör oluþturuyoruz.
 14.2 Oluþturduðumuz bu klasörün içererisine IdentityResourceOwnerPasswordValidator.cs adýnda bir sýnýf oluþturuyoruz ve IResourceOwnerPasswordValidator interface`ini implemente ettiðinden emin oluyoruz.
 14.3 Oluþturduðumuz bu sýnýfda dilersek kendi authentiocation kodumuzu da geliþtirebilirz fakat hazýr yapý ile saðlanan geliþtirme iþimizi hallediyor.
 14.4 Dilersek kendi hata mesajýmýzý da mevcut dönecek hata mesajýna iliþtirebiliyoruz.
-14.5 Kontroller saðlandýðýnda sýnýfýmýzýn geri döneceði bilginin resource owner grand type credential workflow tipinde olmasý gerekmetedir. Böylece token dönüþü saðlayabilir olacaktýr.
+14.5 Kontroller saðlandýðýnda sýnýfýmýzýn geri döneceði bilginin resource owner grant type credential workflow tipinde olmasý gerekmetedir. Böylece token dönüþü saðlayabilir olacaktýr.
 15.6 Bu iþlemlerinden ardýndan Startup.cs içerisinde builder`ýmýza IdentityResourceOwnerPasswordValidator.cs bilgisini geçiyoruz.
 16. Sýradaki aþamamýz IdentityResource bilgisini hangi veriler ile dolduracaðýmýz bulunmaktadýr. Bu iþlemi IdentityServer projemizin Config.cs sýnýfýnda gerçekleþtireceðiz.
 16.1 IdentityResources scope`unda token içerisinde göstereceðimiz bilgileri tanýmlýyororuz. OpenId bilgisi mutlaka tanýmlý olmalýdýr.

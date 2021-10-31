@@ -32,7 +32,7 @@ namespace XProject.IdentityServer
                     DisplayName = "Roles",
                     Description = "User roles",
                     UserClaims = new []{"role"}
-                },
+                }
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -58,20 +58,20 @@ namespace XProject.IdentityServer
                     AllowedGrantTypes = GrantTypes.ClientCredentials, // When you use not user apis and client credentials not include refresh token.
                     AllowedScopes= {"catalog_fullpermission", "photo_stock_fullpermission", IdentityServerConstants.LocalApi.ScopeName}
                 },
-                // Resource owner grand type credential workflow client declaration (ProjectDevelopment.txt step 16.2)
+                // Resource owner grant type credential workflow client declaration (ProjectDevelopment.txt step 16.2)
                 new Client
                 {
                     ClientName = "Asp.Net Core MVC",
                     ClientId = "WebMvcClientForUser",
                     AllowOfflineAccess = true, // When you use offline access this line must be declared.
                     ClientSecrets = {new Secret("secret".Sha256())},
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword, // When you use resource owner grand type credential workflow and this type include refresh token.
-                    AllowedScopes= {
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword, // When you use resource owner grant type credential workflow and this type include refresh token.
+                    AllowedScopes = {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess, // This line for refresh token.
-                        "roles",                        
+                        "roles"
                     },
                     AccessTokenLifetime = 1*60*60, // Default 1 hour.
                     RefreshTokenExpiration = TokenExpiration.Absolute,

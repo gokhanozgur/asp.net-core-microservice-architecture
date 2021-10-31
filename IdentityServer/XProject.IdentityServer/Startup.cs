@@ -60,7 +60,7 @@ namespace XProject.IdentityServer
                 .AddAspNetIdentity<ApplicationUser>();
 
 
-            // Declarin resource owner grand type credential (ProjectDevelopment.txt step 15.6).
+            // Declaring resource owner grand type credential (ProjectDevelopment.txt step 15.6).
             builder.AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
 
             // not recommended for production - you need to store your key material somewhere secure
