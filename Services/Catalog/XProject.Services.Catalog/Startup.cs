@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +30,13 @@ namespace XProject.Services.Catalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Declare authority settings for IdentityServer (ProjectDevelopmentSteps.txt step 11.2).
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+                options.Authority = Configuration["IdentityServerURL"];
+                options.Audience = "resource_catalog"; // If you forget this line, your endpoint not be secure. The token must be included resource_catalog audience declaration (ProjectDevelopment.txt step 11.3).
+                options.RequireHttpsMetadata = false; // If you use SSL, you can change to true (ProjectDevelopment.txt step 11.4).
+            });
+
             // Add service scope for DI container.
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICourseService, CourseService>();
@@ -35,7 +44,10 @@ namespace XProject.Services.Catalog
             // Do not forget AutoMapper dependency (Install with NuGet -- ProjectDevelopmentSteps.txt step 4.1).
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddControllers();
+            // Require token based call for all endpoints [Authorization] (ProjectDevelopmentSteps.txt step 13)
+            services.AddControllers(opt => {
+                opt.Filters.Add(new AuthorizeFilter());
+            });
 
             // Get database settings from appsettings.json
             services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
@@ -60,6 +72,9 @@ namespace XProject.Services.Catalog
             }
 
             app.UseRouting();
+
+            // Declare use authentication (ProjectDevelopment.txt step 11.5).
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

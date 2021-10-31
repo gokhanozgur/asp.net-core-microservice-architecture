@@ -77,3 +77,13 @@ Section 3 Identity Server Kurulum
 9.11.2 Client token bekleyeceðimiz endpoint`imiz için koruma etiketi tanýmlýyoruz.
 9.11.3 Controller içierisinde bulunan methodlarýmýza ulaþýmý ayarlamak için attribute tanýmýmýzý yapýyoruz.
 9.12 SignUp endpointini test etmek için postmanden https://localhost:5001/api/user/signup adresini giriyoruz ve token alma adresimizden bir token ediniyoruz. Daha sonra edindiðimiz bu token`i Authorization kýsmýnda Type OAuth 2.0 seçerek tokenizimizi ilgili alana yazýyoruz ve istek atýyoruz.
+10. Daha önceden oluþturduðumuz Catalog projemizin endpointlerini koruma altýna almak için öncelikle dependency olarak JwtBearer`ý projemize dahil ediyoruz.
+11. Bu aþamada token daðýtýmýný kimin yaptýðýný belirtmek için tanýmlamalar yapmamýz gerekmektedir.
+11.1 appSettings.json içerisinde IdentityServer url bilgisini IdentityServerURL attribute olarak tanýmlýyoruz.
+11.2 Tanýmlamýþ olduðumuz bu bilgiyi Startup.cs içerisinde Authority propertisine eþitliyoruz.
+11.3 Audience tanýmlamamýzý yapýyoruz.
+11.4 Http/Https meta bilgisi ile çalýþma durumunu tanýmlýyoruz.
+11.5 Configurasyonumuza Authentication kullanýlacaðý bilgisini tanýmlýyoruz.
+12. Oluþturduðumuz her iki projenin ayný anda çalýþabilmesi için Solution üzerinde sað týklayarak Set Startup Project seçeneðini seçiyoruz.
+12. Karþýmýza gelen ekranda Multiple startup project seçeneðinden ilgili projeleri Start olarak seçiyoruz.
+13. Projemize ekleyeceðimiz tüm endpoint`ler için her sýnýfa Authorize annotation eklemek yerine Startup.cs içerisinde tanýmlýyoruz.
