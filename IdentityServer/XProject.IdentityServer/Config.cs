@@ -63,6 +63,7 @@ namespace XProject.IdentityServer
                 {
                     ClientName = "Asp.Net Core MVC",
                     ClientId = "WebMvcClientForUser",
+                    AllowOfflineAccess = true, // When you use offline access this line must be declared.
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword, // When you use resource owner grand type credential workflow and this type include refresh token.
                     AllowedScopes= {
