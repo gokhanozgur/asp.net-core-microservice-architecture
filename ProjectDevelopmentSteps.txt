@@ -94,3 +94,7 @@ Section 3 Identity Server Kurulum
 14.4 Dilersek kendi hata mesajýmýzý da mevcut dönecek hata mesajýna iliþtirebiliyoruz.
 14.5 Kontroller saðlandýðýnda sýnýfýmýzýn geri döneceði bilginin resource owner grand type credential workflow tipinde olmasý gerekmetedir. Böylece token dönüþü saðlayabilir olacaktýr.
 15.6 Bu iþlemlerinden ardýndan Startup.cs içerisinde builder`ýmýza IdentityResourceOwnerPasswordValidator.cs bilgisini geçiyoruz.
+16. Sýradaki aþamamýz IdentityResource bilgisini hangi veriler ile dolduracaðýmýz bulunmaktadýr. Bu iþlemi IdentityServer projemizin Config.cs sýnýfýnda gerçekleþtireceðiz.
+16.1 IdentityResources scope`unda token içerisinde göstereceðimiz bilgileri tanýmlýyororuz. OpenId bilgisi mutlaka tanýmlý olmalýdýr.
+16.2 Ardýndan token ile iþleme devam edebilecek bir client tanýmlamasý yapýyoruz. Bu client içerisinde hangi bilgileri ileteceðimizi, access token geçerlilik süresini, refresh token geçerlilik süresini ve refresh token bilgisinin kaç kez kullanýlabileceðini tanýmlýyoruz.
+
